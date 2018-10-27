@@ -15,6 +15,18 @@ const getUrl = async (req) => {
   return req.originalUrl
 }
 
+const renderImagePixel = (res) => {
+  const pixel = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="
+  const base64Image = new Buffer(pixel, 'base64')
+
+  res.writeHead(200, {
+    'Content-Type': 'image/png',
+    'Content-Length': base64Image.length
+  })
+
+  res.end(base64Image)
+}
+
 const trackView = async (req, res) => {
   const url   = await getUrl(req)
   const data  = await getAsync(url)
@@ -22,13 +34,7 @@ const trackView = async (req, res) => {
 
   console.log(`${url} has been viewed ${views} times`)
 
-  res.sendFile('track.jpg', {
-    root: __dirname + '/public/',
-    headers: {
-        'x-timestamp': Date.now(),
-        'x-sent': true
-    }
-  })
+  renderImagePixel(res)
 }
 
 const trackingApp = express()
