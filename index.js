@@ -38,11 +38,23 @@ trackingApp.get(/.{0,}\.jpg/, trackView)
 trackingApp.listen(trackingPort, () => console.log(`Tracking app listening on port ${trackingPort}!`))
 
 // For testing the web app in development,
-// uncomment the code below and visit localhost:3000
+// uncomment the code below and visit localhost:9090
 
 // const webpageApp = express()
 // webpageApp.set('view engine', 'ejs')
-// const webpagePort = 3000
+// const webpagePort = 9090
+// const imageServerUrl = `http://localhost:${trackingPort}`
 
-// webpageApp.get('/', (req, res) => res.render('index'))
+// webpageApp.get('/', (req, res) => res.render('index', {imageServerUrl: imageServerUrl}))
+// webpageApp.listen(webpagePort, () => console.log(`Webpage app listening on port ${webpagePort}!`))
+
+// For testing the web app in production,
+// uncomment the code below and visit localhost:9090
+
+// const webpageApp = express()
+// webpageApp.set('view engine', 'ejs')
+// const webpagePort = 9090
+// const imageServerUrl = `http://githubanalytics.herokuapp.com`
+
+// webpageApp.get('/', (req, res) => res.render('index', {imageServerUrl: imageServerUrl}))
 // webpageApp.listen(webpagePort, () => console.log(`Webpage app listening on port ${webpagePort}!`))
