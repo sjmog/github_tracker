@@ -32,14 +32,17 @@ const trackView = async (req, res) => {
 }
 
 const trackingApp = express()
-const trackingPort = 9090
+const trackingPort = process.env.PORT || 3000
 
 trackingApp.get(/.{0,}\.jpg/, trackView)
 trackingApp.listen(trackingPort, () => console.log(`Tracking app listening on port ${trackingPort}!`))
 
-const webpageApp = express()
-webpageApp.set('view engine', 'ejs')
-const webpagePort = 3000
+// For testing the web app in development,
+// uncomment the code below and visit localhost:3000
 
-webpageApp.get('/', (req, res) => res.render('index'))
-webpageApp.listen(webpagePort, () => console.log(`Webpage app listening on port ${webpagePort}!`))
+// const webpageApp = express()
+// webpageApp.set('view engine', 'ejs')
+// const webpagePort = 3000
+
+// webpageApp.get('/', (req, res) => res.render('index'))
+// webpageApp.listen(webpagePort, () => console.log(`Webpage app listening on port ${webpagePort}!`))
